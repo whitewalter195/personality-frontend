@@ -25,7 +25,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="pt">
             <body
                 className={`${josefin.className} grid h-screen grid-rows-[auto_1fr_auto] antialiased`}
             >
