@@ -11,7 +11,7 @@ import UserInfo from "@/components/UserInfo";
 import { useRouter } from "next/navigation";
 
 type Answer = {
-    value: number;
+    value: number | null;
     id: string;
 };
 
@@ -22,7 +22,7 @@ export default function PersonalityTest({
 }) {
     const router = useRouter();
     const [answers, setAnswers] = useState<Answer[]>(
-        Array(questions.length).fill({ value: 0, id: "" })
+        Array(questions.length).fill({ value: null, id: "" })
     );
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -53,7 +53,7 @@ export default function PersonalityTest({
     };
 
     const handleSubmit = async () => {
-        if (answers.every((answer) => answer.value !== 0)) {
+        if (answers.every((answer) => answer.value !== null)) {
             try {
                 console.log("All answers:", answers);
                 const res = await axios.post(
@@ -81,7 +81,7 @@ export default function PersonalityTest({
                         Olá {userInfo.name} 👋
                     </h1>
                     <QuestionComponent
-                        selectedAnswer={answers[currentQuestion]?.value || null}
+                        selectedAnswer={answers[currentQuestion]?.value}
                         question={questions[currentQuestion]}
                         onAnswer={handleAnswer}
                     />
@@ -97,7 +97,9 @@ export default function PersonalityTest({
                         ) : (
                             <Button
                                 onClick={handleNext}
-                                disabled={answers[currentQuestion].value === 0}
+                                disabled={
+                                    answers[currentQuestion].value === null
+                                }
                             >
                                 Próximo
                             </Button>
