@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 async function page() {
     const res = await axios.get(
-        "https://personality-backend.onrender.comapi/personality/questions"
+        "https://personality-backend.onrender.com/api/personality/questions"
     );
     const questions = res.data;
 
