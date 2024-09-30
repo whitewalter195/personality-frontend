@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-    title: " Descubra Seu Tipo de Personalidade - Personalidadetest",
+interface LayoutProps {
+    children: ReactNode;
+}
+
+export const metadata = {
+    title: "Descubra Seu Tipo de Personalidade - Personalidadetest",
     description:
         "Explore os tipos de personalidade e encontre suas características e carreiras ideais.",
     robots: "INDEX, FOLLOW, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE",
@@ -9,3 +13,13 @@ export const metadata: Metadata = {
         canonical: "https://www.personalidadetest.com/personality-types",
     },
 };
+
+const Layout = ({ children }: LayoutProps) => {
+    return (
+        <html lang="pt">
+            <body>{children}</body>
+        </html>
+    );
+};
+
+export default Layout;
